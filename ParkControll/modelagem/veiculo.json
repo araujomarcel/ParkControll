@@ -1,0 +1,10 @@
+{
+    "placa":"1234567",
+    "tipo": "carro/moto/camionete",
+    "marca": "ford",
+    "modelo": "fiesta",
+    "cor": "branco",
+    "proprietario": "Teste de Souza",
+    "cpf": "123.456.789-10",
+    "telefone": "199998887766"
+}
