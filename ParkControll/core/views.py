@@ -11,3 +11,6 @@ def cadastro(request):
 
 def edicao(request):
     return render(request, 'edicao.html')
+
+def operacional(request):
+    return render(request, 'operacional.html')

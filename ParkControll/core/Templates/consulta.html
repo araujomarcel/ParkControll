@@ -9,29 +9,52 @@
     <title>Consulta</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary, navbar navbar-light" style="background-color: #e3f2fd;">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Park Controll</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link" href="#">Consultar Veículos</a>
-                  <a class="nav-link" href="#">Cadastrar Veículos</a>
-                </div>
-              </div>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary, navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Park Controll</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="{% url 'operacional' %}">Operacional</a>
+              <a class="nav-link" href="{% url 'consulta' %}">Consultar</a>
+              <a class="nav-link" href="{% url 'cadastro' %}">Cadastrar</a>                   
             </div>
-          </nav>
-    </header>
+          </div>
+        </div>
+      </nav>
+</header>
     <div class="container col-6 text-center">  
       <br><br><br>    
-        <h1>Consulta de Veículos</h1>
-
-        tabela com os veiculos cadastrados
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br>
+        <h1 class="mb-3">Consulta de Veículos</h1>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Placa</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Status</th>
+              <th scope="col">Proprietário</th>
+              <th scope="col">Telefone</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">OKM0365</th>
+              <td>Ford</td>
+              <td>Fiesta</td>
+              <td>Estacionado</td>
+              <td>Alexandre</td>
+              <td>(19)99773-7436</td>
+              <td><a class="btn btn-success" href=" {% url 'edicao' %} ">Editar</a></td>
+            </tr>           
+          </tbody>
+        </table>
+          
     </div>
     <footer>
       <dl>

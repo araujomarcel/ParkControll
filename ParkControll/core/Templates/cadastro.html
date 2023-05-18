@@ -9,22 +9,23 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary, navbar navbar-light" style="background-color: #e3f2fd;">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Park Controll</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link" href="#">Consultar Veículos</a>
-                  <a class="nav-link" href="#">Cadastrar Veículos</a>
-                </div>
-              </div>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary, navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Park Controll</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="{% url 'operacional' %}">Operacional</a>
+              <a class="nav-link" href="{% url 'consulta' %}">Consultar</a>
+              <a class="nav-link" href="{% url 'cadastro' %}">Cadastrar</a>                 
             </div>
-          </nav>
-    </header>
+          </div>
+        </div>
+      </nav>
+</header>
     <div class="container col-md-4">  
         <br><br><br>  
         <h1>Cadastro de veículo</h1>
@@ -38,7 +39,11 @@
                 <option selected value="carro">Carro</option>
                 <option value="moto">Moto</option>
                 <option value="camionete">Camionete</option>
-            </select>    
+            </select>  
+            <div class="mb-0">
+              <br><label for="exampleFormControlInput1" class="form-label">Marca</label>
+              <input type="text" maxlength="20" name="marca" class="form-control" id="marca">
+            </div>   
             <div class="mb-3">
                 <br><label for="exampleFormControlInput1" class="form-label">Modelo</label>
                 <input type="text" maxlength="20" name="modelo" class="form-control" id="modelo">
