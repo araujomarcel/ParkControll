@@ -19,24 +19,16 @@ class VeiculoModel(models.Model):
     modelo = models.CharField('modelo', max_length=30)
     cor = models.CharField('cor',max_length=30)
     proprietario = models.CharField('proprietario', max_length=150)
-    cpf_proprietario = models.IntegerField('cpf_proprietario')
-    telefone = models.IntegerField('telefone')
+    cpf_proprietario = models.CharField('cpf_proprietario', max_length=11)
+    telefone = models.CharField('telefone', max_length=11)
 
     def __str__(self):
         return self.placa
 
 class OperacionalModel(models.Model):
     placa = models.CharField('placa',max_length=11)
-    entrada = models.DateTimeField(
-        verbose_name='Entrada veículo',
-        auto_now_add=False, 
-        auto_now=True
-    )
-    saida = models.DateTimeField(
-        verbose_name='Saída veículo',
-        auto_now_add=False, 
-        auto_now=True
-    )
+    entrada = models.DateTimeField()
+    saida = models.DateTimeField()
 
     def __str__(self):
         return self.placa
