@@ -15,10 +15,11 @@ def consulta(request):
         pesquisa = request.POST.get('pesquisa')
 
         if request.POST.get('busca') == 'placa':
-            
-            return HttpResponse('buscando pela placa: ' + pesquisa)
+            context['listaVeiculos'] = VeiculoModel.objects.filter(placa__icontains=pesquisa)            
+            return render(request, 'consulta.html', context)
         else:
-            return HttpResponse('buscando pelo proprietario: ' + pesquisa)
+            context['listaVeiculos'] = VeiculoModel.objects.filter(proprietario__icontains=pesquisa)            
+            return render(request, 'consulta.html', context)
     else:        
         return render(request, 'consulta.html', context)
 
