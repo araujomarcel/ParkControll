@@ -29,14 +29,16 @@
     <div class="container col-md-4">  
         <br><br><br>  
         <h1>Atualizar dados de veículo</h1>
-        <form action="" method="">
+        <form action="{% url 'atualizacao' %}" method="POST"> {% csrf_token %}                       
+            <input style="visibility: hidden;" readonly type="text" name="id" value="{{form.id}}" class="form-control" id="placa">
+            
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Placa</label>
                 <input type="text" minlength="7" maxlength="7" name="placa" value="{{form.placa}}" class="form-control" id="placa">
             </div>           
             <label class="form-label">Tipo de veículo</label><br>
-            <select class="form-select">
-                <option selected value="{{form.tipo}}">Carro</option>
+            <select class="form-select" name="tipo">
+                <option selected value="carro">Carro</option>
                 <option value="moto">Moto</option>
                 <option value="camionete">Camionete</option>
             </select>  
@@ -71,7 +73,7 @@
         </form>
         <br><br><br><br><br><br>
     </div>
-    <footer>
+    <footer class="text-center">
         <dl>
           <dt>E-mail</dt>
           <dd>contato@gmail.com</dd>

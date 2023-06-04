@@ -8,6 +8,7 @@ urlpatterns = [
     path('cadastro/', views.cadastro, name='cadastro'),
     path('consulta/', views.consulta, name='consulta'),
     path('edicao/<str:id>/', views.edicao, name='edicao'),
+    path('atualizacao/', views.atualizacao, name='atualizacao'),
     path('operacional/', views.operacional, name='operacional'),
 
 ]
