@@ -26,6 +26,15 @@
         </div>
       </nav>
 </header>
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+      <ul class="mb-0">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
     <div class="container col-md-6">  
         <br><br><br>  
         <h1>Cadastro de veículo</h1>

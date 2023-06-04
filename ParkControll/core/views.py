@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.contrib import messages
 from .models import UsuarioModel, VeiculoModel, OperacionalModel
 from .forms import UsuarioModelForm, VeiculoModelForm, OperacionalModelForm
 
@@ -25,18 +26,20 @@ def consulta(request):
 
 def cadastro(request):
     if request.method == 'POST':
-        form = VeiculoModelForm(request.POST)        
-        veiculo = VeiculoModel()
-        
-        veiculo.placa = form.data['placa']
-        veiculo.tipo = form.data['tipo']
-        veiculo.marca = form.data['marca']
-        veiculo.modelo = form.data['modelo']
-        veiculo.cor = form.data['cor']
-        veiculo.proprietario = form.data['proprietario']
-        veiculo.cpf_proprietario = form.data['cpf']
-        veiculo.telefone = form.data['telefone']
-        veiculo.save()    
+        form = VeiculoModelForm(request.POST)       
+        if VeiculoModel.objects.get(placa=form.data['placa']) == None:
+            veiculo = VeiculoModel()
+            veiculo.placa = form.data['placa']
+            veiculo.tipo = form.data['tipo']
+            veiculo.marca = form.data['marca']
+            veiculo.modelo = form.data['modelo']
+            veiculo.cor = form.data['cor']
+            veiculo.proprietario = form.data['proprietario']
+            veiculo.cpf_proprietario = form.data['cpf']
+            veiculo.telefone = form.data['telefone']
+            veiculo.save()
+        else:
+            messages.error(request,'Este veículo já foi cadastrado!')            
     return render(request, 'cadastro.html')
 
 def edicao(request, id):    
