@@ -59,5 +59,16 @@ def atualizacao(request):
     veiculo.save()    
     return redirect('consulta')
 
+def edicao(request, id):    
+    veiculo = VeiculoModel.objects.get(placa=id)
+    return render(request, 'edicao.html', {'form': veiculo})
+
+def exclusao(request, id):    
+    veiculo = VeiculoModel.objects.get(placa=id)
+    if veiculo != None:
+        veiculo.delete()
+    
+    return consulta(request)
+
 def operacional(request):
     return render(request, 'operacional.html')
