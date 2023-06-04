@@ -70,7 +70,7 @@
                 <td>{{veiculo.modelo}}</td>              
                 <td>{{veiculo.proprietario}}</td>
                 <td>{{veiculo.telefone}}</td>
-                <td><a class="btn btn-success" href=" {% url 'edicao' %} ">Editar</a></td>
+                <td><a class="btn btn-success" href="/edicao/{{veiculo.placa}}">Editar</a></td>
                 <td><a class="btn btn-danger" href="#">Excluir</a></td>
               </tr> 
               {% endfor %}          

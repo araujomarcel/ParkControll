@@ -38,8 +38,9 @@ def cadastro(request):
         veiculo.save()    
     return render(request, 'cadastro.html')
 
-def edicao(request):
-    return render(request, 'edicao.html')
+def edicao(request, id):
+    veiculo = VeiculoModel.objects.get(placa=id)
+    return render(request, 'edicao.html', {'form': veiculo})
 
 def operacional(request):
     return render(request, 'operacional.html')
