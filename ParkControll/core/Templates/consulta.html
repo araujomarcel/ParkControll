@@ -31,48 +31,49 @@
         <br><br><br>
         <h1 class="mb-3 text-center">Consulta de Veículos</h1>        
 
-        <div class="mb-3">          
-          <input type="text" minlength="7" maxlength="7" name="placa" class="form-control" id="placa">
-        </div>   
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="busca" id="flexRadioDefault1">
-          <label class="form-check-label" for="flexRadioDefault1">
-           Placa
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="busca" id="flexRadioDefault2" checked>
-          <label class="form-check-label" for="flexRadioDefault2">
-           Proprietário
-          </label>
-        </div>
-        <div class="col-auto mb-3">
-          <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-        </div>
-
+        <form action="{% url 'consulta' %}" method="post"> {% csrf_token %}
+          <div class="mb-3">          
+            <input type="text" name="pesquisa" class="form-control" id="pesquisa">
+          </div>   
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="busca" value ="placa" id="flexRadioDefault1" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+            Placa
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="busca" value="proprietario" id="flexRadioDefault2" >
+            <label class="form-check-label" for="flexRadioDefault2">
+            Proprietário
+            </label>
+          </div>
+          <div class="col-auto mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+          </div>
+        </form>
         <table class="table">
           <thead>
             <tr>
               <th scope="col">Placa</th>
               <th scope="col">Marca</th>
-              <th scope="col">Modelo</th>
-              <th scope="col">Status</th>
+              <th scope="col">Modelo</th>              
               <th scope="col">Proprietário</th>
               <th scope="col">Telefone</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">OKM0365</th>
-              <td>Ford</td>
-              <td>Fiesta</td>
-              <td>Estacionado</td>
-              <td>Alexandre</td>
-              <td>(19)99773-7436</td>
-              <td><a class="btn btn-success" href=" {% url 'edicao' %} ">Editar</a></td>
-              <td><a class="btn btn-danger" href="#">Excluir</a></td>
-            </tr>           
+              {% for veiculo in listaVeiculos %}
+              <tr>
+                <th scope="row">{{veiculo.placa}}</th>
+                <td>{{veiculo.marca}}</td>
+                <td>{{veiculo.modelo}}</td>              
+                <td>{{veiculo.proprietario}}</td>
+                <td>{{veiculo.telefone}}</td>
+                <td><a class="btn btn-success" href=" {% url 'edicao' %} ">Editar</a></td>
+                <td><a class="btn btn-danger" href="#">Excluir</a></td>
+              </tr> 
+              {% endfor %}          
           </tbody>
         </table>
           

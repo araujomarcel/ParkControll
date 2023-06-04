@@ -77,9 +77,10 @@ WSGI_APPLICATION = 'ParkControll.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
+        'NAME': 'ParkControll',       
         'CLIENT': {
-            'host': 'mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER_URI>/?retryWrites=true&w=majority',
-            "authMechanism": "SCRAM-SHA-1",
+            'host': 'localhost',
+            'port': 27017,  # Porta padrão do MongoDB           
         }
     }
 }
