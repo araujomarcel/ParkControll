@@ -30,33 +30,42 @@
       
         <h1 class="mt-5 mb-3 text-center">Operacional</h1>        
         
-        <div class="d-flex">
-          <div class="col-md-10 flex-fill">
-            <input type="text" minlength="7" maxlength="7" placeholder="Informe a placa do veículo" name="placa" class="form-control" id="placa">
-         </div>   
-         <div class="mb-3">
-           <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-         </div>  
-        </div>
+        <form action="{% url 'operacional' %}" method="post">{% csrf_token %}
+          <div class="d-flex">
+            <div class="col-md-10 flex-fill">
+              <input type="text" minlength="7" maxlength="7" placeholder="Informe a placa do veículo" name="placa" class="form-control" id="placa">
+          </div>   
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+          </div>  
+          </div>
+        </form>
 
         <table class="table mb-5">
           <thead>
             <th scope="col">Placa</th>
             <th scope="col">Marca</th>
             <th scope="col">Modelo</th>
+            <th scope="col">Cor</th>
             <th scope="col">Status</th>
-            <th scope="col">Entrada</th>
-            <th scope="col">Saída</th>
+            <th scope="col"></th>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">OKM0365</td>
-              <td>Ford</td>
-              <td>Fiesta</td>
-              <td>Estacionado</td>
-              <td><a class="btn btn-success">Registrar</a></td>
-              <td><a class="btn btn-danger">Registrar</a></td>
+            {% for veiculo in listaVeiculos%}
+            <tr>              
+              <th scope="row">{{veiculo.placa}}</td>
+              <td>{{veiculo.marca}}</td>
+              <td>{{veiculo.modelo}}</td>
+              <td>{{veiculo.cor}}</td>
+              <td>{{veiculo.status}}</td>
+              {% if veiculo.status == 'Não Estacionado' %}
+              <td><a class="btn btn-success" href="/entrada/{{veiculo.placa}}">Registrar Entrada</a></td>              
+              {% else %}
+              <td><a class="btn btn-danger" style="width: 145px;" href="/saida/{{veiculo.placa}}">Registrar Saída</a></td>
+              {% endif %}
+              
             </tr>
+            {% endfor %}
           </tbody>
         </table>
     </div>

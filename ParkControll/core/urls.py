@@ -11,5 +11,6 @@ urlpatterns = [
     path('exclusao/<str:id>/', views.exclusao, name='exclusao'),
     path('atualizacao/', views.atualizacao, name='atualizacao'),
     path('operacional/', views.operacional, name='operacional'),
-
+    path('entrada/<str:id>/', views.entrada, name='entrada'),
+    path('saida/<str:id>/', views.saida, name='saida'),
 ]

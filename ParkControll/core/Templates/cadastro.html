@@ -40,7 +40,7 @@
         <h1>Cadastro de veículo</h1>
         <form action="{% url 'cadastro' %}" method="post">  {% csrf_token %}
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Placa</label>
+                <label for="placa" class="form-label">Placa</label>
                 <input type="text" minlength="7" maxlength="7" name="placa" class="form-control" id="placa">
             </div>           
             <label class="form-label">Tipo de veículo</label><br>
@@ -50,27 +50,27 @@
                 <option value="camionete">Camionete</option>
             </select>  
             <div class="mb-0">
-              <br><label for="exampleFormControlInput1" class="form-label">Marca</label>
+              <br><label for="marca" class="form-label">Marca</label>
               <input type="text" maxlength="20" name="marca" class="form-control" id="marca">
             </div>   
             <div class="mb-3">
-                <br><label for="exampleFormControlInput1" class="form-label">Modelo</label>
+                <br><label for="modelo" class="form-label">Modelo</label>
                 <input type="text" maxlength="20" name="modelo" class="form-control" id="modelo">
             </div>     
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Cor</label>
+                <label for="cor" class="form-label">Cor</label>
                 <input type="text" maxlength="20" name="cor" class="form-control" id="cor">
             </div>     
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Proprietário</label>
+                <label for="proprietario" class="form-label">Proprietário</label>
                 <input type="text" maxlength="50" name="proprietario" class="form-control" id="proprietario">
             </div>  
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">CPF</label>
+                <label for="cpf" class="form-label">CPF</label>
                 <input type="text" minlength="11" maxlength="11" name="cpf" class="form-control" id="cpf">
             </div>  
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Telefone</label>
+                <label for="telefone" class="form-label">Telefone</label>
                 <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" id="telefone">
             </div>  
             <div class="col-auto">
