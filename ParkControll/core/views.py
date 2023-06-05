@@ -84,11 +84,9 @@ def operacional(request):
     context = {'listaVeiculos': veiculos}
 
     if request.method == 'POST':       
-        pesquisa = request.POST.get('pesquisa')
-
-        return HttpResponse('Via POST')       
-    else:        
-        return render(request, 'operacional.html', context)
+        pesquisa = request.POST.get('placa')
+        context['listaVeiculos'] = VeiculoModel.objects.filter(placa__icontains=pesquisa)      
+    return render(request, 'operacional.html', context)
 
 def entrada(request, id):       
      veiculo = VeiculoModel.objects.get(placa=id)
