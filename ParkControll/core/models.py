@@ -21,6 +21,7 @@ class VeiculoModel(models.Model):
     proprietario = models.CharField('proprietario', max_length=150)
     cpf_proprietario = models.CharField('cpf_proprietario', max_length=11)
     telefone = models.CharField('telefone', max_length=11)
+    status = models.CharField('status', max_length=20, default='Não Estacionado')
 
     def __str__(self):
         return self.placa

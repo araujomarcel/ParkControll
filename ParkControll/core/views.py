@@ -27,7 +27,9 @@ def consulta(request):
 def cadastro(request):
     if request.method == 'POST':
         form = VeiculoModelForm(request.POST)       
-        if VeiculoModel.objects.get(placa=form.data['placa']) == None:
+        if VeiculoModel.objects.filter(placa=form.data['placa']).exists():
+            messages.error(request,'Este veículo já foi cadastrado!') 
+        else:
             veiculo = VeiculoModel()
             veiculo.placa = form.data['placa']
             veiculo.tipo = form.data['tipo']
@@ -38,8 +40,7 @@ def cadastro(request):
             veiculo.cpf_proprietario = form.data['cpf']
             veiculo.telefone = form.data['telefone']
             veiculo.save()
-        else:
-            messages.error(request,'Este veículo já foi cadastrado!')            
+                      
     return render(request, 'cadastro.html')
 
 def edicao(request, id):    
