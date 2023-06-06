@@ -26,51 +26,42 @@
         </div>
       </nav>
 </header>
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-      <ul class="mb-0">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-    <div class="container col-md-6">  
+    <div class="container col-md-4">  
         <br><br><br>  
         <h1>Cadastro de veículo</h1>
-        <form action="{% url 'cadastro' %}" method="post">  {% csrf_token %}
+        <form action="" method="" id="cadastroForm">
             <div class="mb-3">
-                <label for="placa" class="form-label">Placa</label>
+                <label for="exampleFormControlInput1" class="form-label">Placa</label>
                 <input type="text" minlength="7" maxlength="7" name="placa" class="form-control" id="placa">
             </div>           
             <label class="form-label">Tipo de veículo</label><br>
-            <select class="form-select" name="tipo">
+            <select class="form-select">
                 <option selected value="carro">Carro</option>
                 <option value="moto">Moto</option>
                 <option value="camionete">Camionete</option>
             </select>  
             <div class="mb-0">
-              <br><label for="marca" class="form-label">Marca</label>
+              <br><label for="exampleFormControlInput1" class="form-label">Marca</label>
               <input type="text" maxlength="20" name="marca" class="form-control" id="marca">
             </div>   
             <div class="mb-3">
-                <br><label for="modelo" class="form-label">Modelo</label>
+                <br><label for="exampleFormControlInput1" class="form-label">Modelo</label>
                 <input type="text" maxlength="20" name="modelo" class="form-control" id="modelo">
             </div>     
             <div class="mb-3">
-                <label for="cor" class="form-label">Cor</label>
+                <label for="exampleFormControlInput1" class="form-label">Cor</label>
                 <input type="text" maxlength="20" name="cor" class="form-control" id="cor">
             </div>     
             <div class="mb-3">
-                <label for="proprietario" class="form-label">Proprietário</label>
+                <label for="exampleFormControlInput1" class="form-label">Proprietário</label>
                 <input type="text" maxlength="50" name="proprietario" class="form-control" id="proprietario">
             </div>  
             <div class="mb-3">
-                <label for="cpf" class="form-label">CPF</label>
+                <label for="exampleFormControlInput1" class="form-label">CPF</label>
                 <input type="text" minlength="11" maxlength="11" name="cpf" class="form-control" id="cpf">
             </div>  
             <div class="mb-3">
-                <label for="telefone" class="form-label">Telefone</label>
+                <label for="exampleFormControlInput1" class="form-label">Telefone</label>
                 <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" id="telefone">
             </div>  
             <div class="col-auto">
@@ -78,8 +69,73 @@
             </div>
             <br><br><br>
         </form>
+        <script>
+          function validarCPF(cpf) {
+              cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+      
+              if (cpf.length !== 11 || /^(.)\1+$/.test(cpf)) {
+                  return false; // CPF deve ter 11 dígitos e não pode ter todos os dígitos iguais
+              }
+          }
+          // Função para validar o formulário antes do envio
+          function validarFormulario(event) {
+              var cpfInput = document.getElementById('cpf');
+              var cpf = cpfInput.value;
+      
+              if (!validarCPF(cpf)) {
+                  alert('CPF inválido. Por favor, verifique o campo CPF.');
+                  event.preventDefault(); // Impede o envio do formulário se o CPF for inválido
+              }
+          }
+          // Adiciona o evento de validação ao formulário
+          var form = document.getElementById('cadastroForm');
+          form.addEventListener('submit', validarFormulario);
+
+          // Adiciona o evento de digitação ao campo CPF
+          var cpfInput = document.getElementById('cpf');
+          cpfInput.addEventListener('keypress', validarDigitacaoNumerica);
+
+
+          function validarFormulario(event) {
+            var cpfInput = document.getElementById('cpf');
+            var cpf = cpfInput.value;
+
+            var placaInput = document.getElementById('placa');
+            var placa = placaInput.value;
+
+            var marcaInput = document.getElementById('marca');
+            var marca = marcaInput.value;
+
+            var modeloInput = document.getElementById('modelo');
+            var modelo = modeloInput.value;
+
+            var corInput = document.getElementById('cor');
+            var cor = corInput.value;
+
+            var proprietarioInput = document.getElementById('proprietario');
+            var proprietario = proprietarioInput.value;
+
+            var telefoneInput = document.getElementById('telefone');
+            var telefone = telefoneInput.value;
+
+    // Verifica se algum campo está vazio
+          if (
+              cpf === '' ||
+              placa === '' ||
+              marca === '' ||
+              modelo === '' ||
+              cor === '' ||
+              proprietario === '' ||
+              telefone === ''
+          ) {
+              alert('Por favor, preencha todos os campos.');
+              event.preventDefault(); // Impede o envio do formulário se algum campo estiver vazio
+          }
+}
+      </script>
+      
     </div>
-    <footer class="footer text-center">
+    <footer>
         <dl>
           <dt>E-mail</dt>
           <dd>contato@gmail.com</dd>
