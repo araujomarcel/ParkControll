@@ -101,8 +101,7 @@
             <div class="navbar-nav">
               <a class="nav-link" href="{% url 'operacional' %}"><font color="white">Operacional</font></a>
               <a class="nav-link" href="{% url 'consulta' %}"><font color="white">Consultar</font></a>
-              <a class="nav-link" href="{% url 'cadastro' %}"><font color="white">Cadastrar</font></a>
-              <a class="nav-link" href="{% url 'edicao' %}"><font color="white">Atualizar</font></a>                 
+              <a class="nav-link" href="{% url 'cadastro' %}"><font color="white">Cadastrar</font></a>                       
             </div>
           </div>
         </div>
@@ -113,43 +112,43 @@
 </STYLE>
     <div class="container col-md-4">  
         <br><br><br>  
-        
-        <form action="" method=""  id="cadastroForm">
+        <form action="{% url 'atualizacao' %}" method="POST" id="cadastroForm"> {% csrf_token %} 
+          <input style="visibility: hidden;" readonly type="text" name="id" value="{{form.id}}" class="form-control" id="id">  
           <fieldset>
-            <legend><b>Atualizar dados de veículo</legend></b>
+            <legend><b>Atualizar dados do veículo</legend></b>  
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Placa</label>
-                <input type="text" minlength="7" maxlength="7" name="placa" class="form-control" id="placa">
+                <label for="placa" class="form-label">Placa</label>
+                <input type="text" minlength="7" maxlength="7" name="placa" value="{{form.placa}}" class="form-control" id="placa">
             </div>           
             <label class="form-label">Tipo de veículo</label><br>
-            <select class="form-select">
+            <select class="form-select" name="tipo">
                 <option selected value="carro">Carro</option>
                 <option value="moto">Moto</option>
                 <option value="camionete">Camionete</option>
             </select>  
             <div class="mb-0">
-              <br><label for="exampleFormControlInput1" class="form-label">Marca</label>
-              <input type="text" maxlength="20" name="marca" class="form-control" id="marca">
+              <br><label for="marca" class="form-label">Marca</label>
+              <input type="text" maxlength="20" name="marca" value="{{form.marca}}" class="form-control" id="marca">
             </div>   
             <div class="mb-3">
-                <br><label for="exampleFormControlInput1" class="form-label">Modelo</label>
-                <input type="text" maxlength="20" name="modelo" class="form-control" id="modelo">
+                <br><label for="modelo" class="form-label">Modelo</label>
+                <input type="text" maxlength="20" name="modelo" value="{{form.modelo}}" class="form-control" id="modelo">
             </div>     
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Cor</label>
-                <input type="text" maxlength="20" name="cor" class="form-control" id="cor">
+                <label for="cor" class="form-label">Cor</label>
+                <input type="text" maxlength="20" name="cor" value="{{form.cor}}" class="form-control" id="cor">
             </div>     
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Proprietário</label>
-                <input type="text" maxlength="50" name="proprietario" class="form-control" id="proprietario">
+                <label for="proprietario" class="form-label">Proprietário</label>
+                <input type="text" maxlength="50" name="proprietario" value="{{form.proprietario}}" class="form-control" id="proprietario">
             </div>  
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">CPF</label>
-                <input type="text" minlength="11" maxlength="11" name="cpf" class="form-control" id="cpf">
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" minlength="11" maxlength="11" name="cpf" value="{{form.cpf_proprietario}}" class="form-control" id="cpf">
             </div>  
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Telefone</label>
-                <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" id="telefone">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="text" minlength="10" maxlength="11" name="telefone" value="{{form.telefone}}" class="form-control" id="telefone">
             </div>  
             <br>
             <div class="col-auto">

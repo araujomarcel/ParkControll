@@ -70,7 +70,7 @@ def edicao(request, id):
     veiculo = VeiculoModel.objects.get(placa=id)
     return render(request, 'edicao.html', {'form': veiculo})
 
-def exclusao(request, id):    
+def exclusao(request, id):
     veiculo = VeiculoModel.objects.get(placa=id)
     if veiculo != None:
         veiculo.delete()
