@@ -89,14 +89,22 @@ form{
 }
 </style>
 
-
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+  <ul class="mb-0">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
 
   </head>
 <body>
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary, navbar navbar-light" style="background-color: rgba(0, 0, 0, 0.6);">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'index' %}">Park Controll</a>
+          <a class="navbar-brand" href="{% url 'operacional' %}">Park Controll</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -118,7 +126,7 @@ form{
     <div name="form" class="container col-md-4">  
         <br><br><br>  
         
-          <form action="" method="" id="cadastroForm">
+        <form action="{% url 'cadastro' %}" method="post" id="cadastroForm">  {% csrf_token %}
             <fieldset>
               <legend><b>Cadastro de veículo</b></legend>
               <div class="mb-3">

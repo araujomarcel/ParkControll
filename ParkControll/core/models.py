@@ -6,8 +6,6 @@ class UsuarioModel(models.Model):
     email = models.CharField('email',max_length=150)
     senha = models.CharField('senha',max_length=150)
     permissao = models.IntegerField('permissao')
-
-
     def __str__(self):
         return self.nome
 

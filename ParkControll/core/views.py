@@ -1,11 +1,21 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
+from django.contrib.auth.views import LoginView
 from datetime import datetime
 from .models import UsuarioModel, VeiculoModel, OperacionalModel
 from .forms import UsuarioModelForm, VeiculoModelForm, OperacionalModelForm
+from django.contrib import auth
+from django.http import HttpResponseRedirect
 
-def index(request):
-    return render(request, 'index.html')
+
+def login(request):
+     if request.method == 'POST':
+         
+         #Fazer a validação dos campos
+
+         return redirect('operacional')
+     else:
+         return render(request, 'login.html')
 
 def consulta(request):
 
