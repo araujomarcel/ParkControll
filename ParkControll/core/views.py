@@ -40,7 +40,7 @@ def cadastro(request):
         form = VeiculoModelForm(request.POST)       
         if VeiculoModel.objects.filter(placa=form.data['placa']).exists():
             messages.error(request,'Este veículo já foi cadastrado!') 
-        elif len(form.data['placa']) != 6:
+        elif len(form.data['placa']) != 7:
              messages.error(request,'A placa informada é inválida!') 
         else:
             veiculo = VeiculoModel()

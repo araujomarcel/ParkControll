@@ -8,7 +8,9 @@ class UsuarioModel(models.Model):
     permissao = models.IntegerField('permissao')
     def __str__(self):
         return self.nome
-
+    
+    class Meta:
+        verbose_name_plural = 'Usuarios'    
 
 class VeiculoModel(models.Model):
     placa = models.CharField('placa',max_length=11)
@@ -23,6 +25,9 @@ class VeiculoModel(models.Model):
 
     def __str__(self):
         return self.placa
+    
+    class Meta:
+        verbose_name_plural = 'Veiculos'
 
 class OperacionalModel(models.Model):
     placa = models.CharField('placa',max_length=11)
@@ -33,4 +38,4 @@ class OperacionalModel(models.Model):
         return self.placa
 
     class Meta:
-        verbose_name_plural = 'Veículos'
+        verbose_name_plural = 'Operacional'
