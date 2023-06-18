@@ -1,12 +1,8 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
 from datetime import datetime
 from .models import UsuarioModel, VeiculoModel, OperacionalModel
-from .forms import UsuarioModelForm, VeiculoModelForm, OperacionalModelForm
-from django.contrib import auth
-from django.http import HttpResponseRedirect
-
+from .forms import VeiculoModelForm, OperacionalModelForm
 
 def login(request):
      if request.method == 'POST':
@@ -79,6 +75,19 @@ def atualizacao(request):
 def edicao(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     return render(request, 'edicao.html', {'form': veiculo})
+
+def historico(request, id):    
+
+    veiculos = []
+    context = {'historico': veiculos}
+
+    veiculos = OperacionalModel.objects.all()
+
+    for veiculo in veiculos:       
+        if veiculo.placa == id:
+            context['historico'].append(veiculo)
+
+    return render(request, 'historico.html', context)
 
 def exclusao(request, id):
     veiculo = VeiculoModel.objects.get(placa=id)

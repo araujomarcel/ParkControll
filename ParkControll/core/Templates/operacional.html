@@ -119,7 +119,7 @@
         </form>
         
         <div class="container-fluid box text-center">
-          <table class="table mb-5">
+          <table class="table mb-3">
             <thead>
               <th scope="col">Placa</th>
               <th scope="col">Marca</th>
@@ -131,7 +131,7 @@
             <tbody>
               {% for veiculo in listaVeiculos%}
               <tr>              
-                <td scope="row"><strong><a class="historico" href="#">{{veiculo.placa}}</a></strong></td>                
+                <td scope="row"><strong><a class="historico" href="/historico/{{veiculo.placa}}">{{veiculo.placa}}</a></strong></td>                
                 <td>{{veiculo.marca}}</td>
                 <td>{{veiculo.modelo}}</td>
                 <td>{{veiculo.cor}}</td>

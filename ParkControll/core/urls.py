@@ -10,6 +10,7 @@ urlpatterns = [
     path('edicao/<str:id>/', views.edicao, name='edicao'),
     path('exclusao/<str:id>/', views.exclusao, name='exclusao'),
     path('atualizacao/', views.atualizacao, name='atualizacao'),
+    path('historico/<str:id>/', views.historico, name='historico'),
     path('operacional/', views.operacional, name='operacional'),
     path('entrada/<str:id>/', views.entrada, name='entrada'),
     path('saida/<str:id>/', views.saida, name='saida'),
