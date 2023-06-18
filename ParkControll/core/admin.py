@@ -5,7 +5,7 @@ class UsuarioModelAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email', 'senha', 'permissao')
 
 class VeiculoModelAdmin(admin.ModelAdmin):
-    list_display = ('placa','tipo','marca','modelo','cor','proprietario','cpf_proprietario','telefone')
+    list_display = ('placa','tipo','marca','modelo','cor','proprietario','cpf_proprietario','telefone','status')
 
 class OperacionalModelAdmin(admin.ModelAdmin):
     list_display = ('placa', 'entrada', 'saida')
