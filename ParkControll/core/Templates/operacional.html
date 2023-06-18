@@ -122,6 +122,7 @@
           <table class="table mb-3">
             <thead>
               <th scope="col">Placa</th>
+              <th scope="col">Tipo</th>
               <th scope="col">Marca</th>
               <th scope="col">Modelo</th>
               <th scope="col">Cor</th>
@@ -132,6 +133,7 @@
               {% for veiculo in listaVeiculos%}
               <tr>              
                 <td scope="row"><strong><a class="historico" href="/historico/{{veiculo.placa}}">{{veiculo.placa}}</a></strong></td>                
+                <td>{{veiculo.tipo}}</td>
                 <td>{{veiculo.marca}}</td>
                 <td>{{veiculo.modelo}}</td>
                 <td>{{veiculo.cor}}</td>
