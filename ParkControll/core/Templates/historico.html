@@ -119,8 +119,8 @@
                 {% for veiculo in historico %}
                 <tr>              
                   <td scope="row"><strong><a class="historico">{{veiculo.placa}}</a></strong></td>                
-                  <td>{{veiculo.entrada}}</td>
-                  <td>{{veiculo.saida}}</td>
+                  <td>{{veiculo.entrada}}</td>                 
+                  <td id="saida">{{veiculo.saida}}</td> 
                 </tr>
                 {% endfor %}
                 {% else %}
@@ -133,8 +133,6 @@
               </tbody>
             </table>
           </div>
-
-
       </div>
      </div>
 
@@ -153,5 +151,15 @@
         </dl>    
         <p><a class="nav-link" href="#">Park Controll</a></p>
       </footer>
+      <script>
+        saida = document.querySelectorAll('#saida');
+
+        saida.forEach(element => {
+           if(element.textContent == 'Dez. 31, 3000, meia-noite')
+           {
+              element.textContent = 'Estacionado'
+           }
+        });
+      </script>
 </body>
 </html>
