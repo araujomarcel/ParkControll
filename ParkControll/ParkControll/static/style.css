@@ -1,0 +1,25 @@
+header{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0px 0;    
+}
+
+.navbar-brand{
+    padding: 0;
+    color:rgb(255, 255, 255);
+}
+.navbar-brand:hover{
+    color: rgb(255, 255, 255);
+}
+.navbar-links a {
+    color: rgb(255, 255, 255);
+}
+.navbar-links, .a {
+    color: rgb(255, 255, 255);
+}
+
+.navbarNavAltMarkup{
+    color: white;
+}
