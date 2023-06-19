@@ -4,17 +4,21 @@ from datetime import datetime
 from .models import UsuarioModel, VeiculoModel, OperacionalModel
 from .forms import VeiculoModelForm, OperacionalModelForm
 
-def login(request):
-     if request.method == 'POST':
-         
-         #Fazer a validação dos campos
+def index(request):
+    if request.method == 'POST':
+        username = request.POST['usuario']
+        password = request.POST['senha']     
 
-         return redirect('operacional')
-     else:
-         return render(request, 'login.html')
+        try:
+            user = UsuarioModel.objects.get(nome=username)       
+            if user.senha == password:                             
+                return redirect('operacional')
+        except UsuarioModel.DoesNotExist:           
+            return render(request, 'login.html')
+    else:           
+           return render(request, 'login.html')
 
 def consulta(request):
-
     veiculos = []
     veiculos = VeiculoModel.objects.all()
     context = {'listaVeiculos': veiculos}
@@ -52,10 +56,12 @@ def cadastro(request):
                       
     return render(request, 'cadastro.html')
 
+
 def edicao(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     return render(request, 'edicao.html', {'form': veiculo})
-   
+
+
 def atualizacao(request):
     form = VeiculoModelForm(request.POST)  
     veiculo = VeiculoModel.objects.get(id=form.data['id'])
@@ -72,9 +78,11 @@ def atualizacao(request):
     veiculo.save()    
     return redirect('consulta')
 
+
 def edicao(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     return render(request, 'edicao.html', {'form': veiculo})
+
 
 def historico(request, id):    
 
@@ -89,12 +97,14 @@ def historico(request, id):
 
     return render(request, 'historico.html', context)
 
+
 def exclusao(request, id):
     veiculo = VeiculoModel.objects.get(placa=id)
     if veiculo != None:
         veiculo.delete()
     
     return consulta(request)
+
 
 def operacional(request):
 
@@ -106,6 +116,7 @@ def operacional(request):
         pesquisa = request.POST.get('placa')
         context['listaVeiculos'] = VeiculoModel.objects.filter(placa__icontains=pesquisa)      
     return render(request, 'operacional.html', context)
+
 
 def entrada(request, id):       
      veiculo = VeiculoModel.objects.get(placa=id)
@@ -120,6 +131,7 @@ def entrada(request, id):
 
      return redirect('operacional')
 
+
 def saida(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     veiculo.status = 'Não Estacionado'
@@ -130,3 +142,4 @@ def saida(request, id):
     operacional.save()
 
     return redirect('operacional')
+
