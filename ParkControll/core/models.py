@@ -1,17 +1,5 @@
 from djongo import models
 
-class UsuarioModel(models.Model):
-    nome = models.CharField('login',max_length=30)
-    email = models.CharField('email',max_length=150)
-    senha = models.CharField('senha',max_length=25)
-    permissao = models.IntegerField('permissao')
-   
-    def __str__(self):
-        return self.nome
-    
-    class Meta:
-        verbose_name_plural = 'Usuarios'    
-
 class VeiculoModel(models.Model):
     placa = models.CharField('placa',max_length=11)
     tipo = models.CharField('tipo', max_length=30)

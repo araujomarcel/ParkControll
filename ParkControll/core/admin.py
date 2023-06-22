@@ -1,8 +1,5 @@
 from django.contrib import admin
-from .models import UsuarioModel, VeiculoModel, OperacionalModel
-
-class UsuarioModelAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'senha', 'permissao')
+from .models import  VeiculoModel, OperacionalModel
 
 class VeiculoModelAdmin(admin.ModelAdmin):
     list_display = ('placa','tipo','marca','modelo','cor','proprietario','cpf_proprietario','telefone','status')
@@ -10,7 +7,6 @@ class VeiculoModelAdmin(admin.ModelAdmin):
 class OperacionalModelAdmin(admin.ModelAdmin):
     list_display = ('placa', 'entrada', 'saida')
 
-admin.site.register(UsuarioModel, UsuarioModelAdmin)
 admin.site.register(VeiculoModel, VeiculoModelAdmin)
 admin.site.register(OperacionalModel, OperacionalModelAdmin)
 

@@ -1,10 +1,5 @@
-from .models import UsuarioModel, VeiculoModel, OperacionalModel
+from .models import VeiculoModel, OperacionalModel
 from django.forms import ModelForm
-
-class UsuarioModelForm(ModelForm):
-    class Meta:
-        model = UsuarioModel
-        fields = ['nome', 'email', 'senha', 'permissao']
 
 class VeiculoModelForm(ModelForm):
     class Meta:

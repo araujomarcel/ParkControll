@@ -1,5 +1,4 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from .import views
 
 
@@ -14,4 +13,5 @@ urlpatterns = [
     path('operacional/', views.operacional, name='operacional'),
     path('entrada/<str:id>/', views.entrada, name='entrada'),
     path('saida/<str:id>/', views.saida, name='saida'),
+    path('logout/', views.sair, name='logout'),
 ]

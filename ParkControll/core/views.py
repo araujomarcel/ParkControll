@@ -1,23 +1,28 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from datetime import datetime
-from .models import UsuarioModel, VeiculoModel, OperacionalModel
-from .forms import VeiculoModelForm, OperacionalModelForm
+from .models import VeiculoModel, OperacionalModel
+from .forms import VeiculoModelForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.method == 'POST':
-        username = request.POST['usuario']
-        password = request.POST['senha']     
+        usuario = request.POST['usuario']
+        senha = request.POST['senha']   
+       
+        user = authenticate(username=usuario, password=senha)   
 
-        try:
-            user = UsuarioModel.objects.get(nome=username)       
-            if user.senha == password:                             
-                return redirect('operacional')
-        except UsuarioModel.DoesNotExist:           
+        if user:                     
+            login(request, user)
+            return redirect('operacional')  
+        else:           
             return render(request, 'login.html')
     else:           
-           return render(request, 'login.html')
+        return render(request, 'login.html')
 
+@login_required(login_url='/')
 def consulta(request):
     veiculos = []
     veiculos = VeiculoModel.objects.all()
@@ -34,7 +39,8 @@ def consulta(request):
             return render(request, 'consulta.html', context)
     else:        
         return render(request, 'consulta.html', context)
-
+    
+@login_required(login_url='/')
 def cadastro(request):
     if request.method == 'POST':
         form = VeiculoModelForm(request.POST)       
@@ -56,12 +62,12 @@ def cadastro(request):
                       
     return render(request, 'cadastro.html')
 
-
+@login_required(login_url='/')
 def edicao(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     return render(request, 'edicao.html', {'form': veiculo})
 
-
+@login_required(login_url='/')
 def atualizacao(request):
     form = VeiculoModelForm(request.POST)  
     veiculo = VeiculoModel.objects.get(id=form.data['id'])
@@ -78,12 +84,12 @@ def atualizacao(request):
     veiculo.save()    
     return redirect('consulta')
 
-
+@login_required(login_url='/')
 def edicao(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     return render(request, 'edicao.html', {'form': veiculo})
 
-
+@login_required(login_url='/')
 def historico(request, id):    
 
     veiculos = []
@@ -97,7 +103,7 @@ def historico(request, id):
 
     return render(request, 'historico.html', context)
 
-
+@login_required(login_url='/')
 def exclusao(request, id):
     veiculo = VeiculoModel.objects.get(placa=id)
     if veiculo != None:
@@ -105,7 +111,7 @@ def exclusao(request, id):
     
     return consulta(request)
 
-
+@login_required(login_url='/')
 def operacional(request):
 
     veiculos = []
@@ -117,7 +123,7 @@ def operacional(request):
         context['listaVeiculos'] = VeiculoModel.objects.filter(placa__icontains=pesquisa)      
     return render(request, 'operacional.html', context)
 
-
+@login_required(login_url='/')
 def entrada(request, id):       
      veiculo = VeiculoModel.objects.get(placa=id)
      veiculo.status = 'Estacionado'
@@ -131,7 +137,7 @@ def entrada(request, id):
 
      return redirect('operacional')
 
-
+@login_required(login_url='/')
 def saida(request, id):    
     veiculo = VeiculoModel.objects.get(placa=id)
     veiculo.status = 'Não Estacionado'
@@ -142,4 +148,9 @@ def saida(request, id):
     operacional.save()
 
     return redirect('operacional')
+
+@login_required(login_url='/')
+def sair(request):
+    logout(request)
+    return render(request, 'login.html')
 
